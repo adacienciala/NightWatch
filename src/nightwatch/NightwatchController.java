@@ -37,6 +37,17 @@ public class NightwatchController {
             audioPane.getStyleClass().add("audio-pane");
         }
         else audioPane.getStyleClass().add("audio-pane-active");
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("radio.fxml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Radio");
+        stage.setScene(new Scene(root, 450, 450));
+        stage.show();
     }
 
     public void openEmergencyWindow(MouseEvent mouseEvent) {
