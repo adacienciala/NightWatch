@@ -33,18 +33,8 @@
     -fx-background-size: stretch;
 }
 
-.radio-knob {
-    -fx-background-image: url('img/Knob.png');
-    -fx-background-size: stretch;
-}
-
 .lights-window {
     -fx-background-image: url('img/lights_window.jpg');
-    -fx-background-size: stretch;
-}
-
-.radio-window {
-    -fx-background-image: url('img/radio_window.png');
     -fx-background-size: stretch;
 }
 

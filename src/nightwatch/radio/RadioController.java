@@ -1,4 +1,4 @@
-package nightwatch;
+package nightwatch.radio;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -1,0 +1,9 @@
+.radio-knob {
+    -fx-background-image: url('resources/knob.png');
+    -fx-background-size: stretch;
+}
+
+.radio-window {
+    -fx-background-image: url('resources/radio_window.png');
+    -fx-background-size: stretch;
+}

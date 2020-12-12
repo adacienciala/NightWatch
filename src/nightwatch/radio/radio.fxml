@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" styleClass="radio-window" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightwatch.RadioController">
+            prefWidth="600.0" styleClass="radio-window" stylesheets="@radio_style.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightwatch.radio.RadioController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -18,7 +18,7 @@
         </rowConstraints>
          <children>
              <Label fx:id="knob" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" styleClass="radio-knob"
-                    stylesheets="@style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                    stylesheets="@radio_style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
                     GridPane.valignment="CENTER"/>
          </children>
       </GridPane>

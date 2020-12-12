@@ -65,7 +65,7 @@ public class NightwatchController {
         else audioPane.getStyleClass().add("audio-pane-active");
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("radio.fxml"));
+            root = FXMLLoader.load(getClass().getResource("radio/radio.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             return;
