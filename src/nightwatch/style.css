@@ -34,7 +34,12 @@
 }
 
 .radio-knob {
-    -fx-background-image: url('img/knob.png');
+    -fx-background-image: url('img/Knob.png');
+    -fx-background-size: stretch;
+}
+
+.lights-window {
+    -fx-background-image: url('img/lights_window.jpg');
     -fx-background-size: stretch;
 }
 
