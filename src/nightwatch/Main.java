@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("pinVerification.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("door.fxml"));
         Font.loadFont(getClass().getResourceAsStream("Seven Segment.ttf"), 12);
         primaryStage.setTitle("NightWatch");
         primaryStage.setScene(new Scene(root, 700, 500));

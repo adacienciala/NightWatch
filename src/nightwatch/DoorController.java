@@ -15,7 +15,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class PinVerification {
+public class DoorController {
     @FXML
     public AnchorPane rootPane;
     @FXML
@@ -24,11 +24,6 @@ public class PinVerification {
     private Button approveBtn;
     @FXML
     private Button cancelBtn;
-
-    @FXML
-    public void initialize() {
-
-    }
 
     @FXML
     public void clearCode(ActionEvent event) {
@@ -50,18 +45,13 @@ public class PinVerification {
         if (pin.equals("1111")) {
             codeLabel.setText("OK");
             Thread.sleep(1000);
-            logIn();
+            fadeOut();
         }
         else {
             codeLabel.setText("XXXX");
             Thread.sleep(1000);
             codeLabel.setText("");
         }
-    }
-
-    public void logIn() {
-        fadeOut();
-        loadCockpitScene();
     }
 
     public void fadeOut() {
@@ -76,7 +66,9 @@ public class PinVerification {
 
     public void loadCockpitScene() {
         try {
-            Parent cockpitRoot = (GridPane) FXMLLoader.load(getClass().getResource("nightwatch.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("nightwatch.fxml"));
+            Parent cockpitRoot = loader.load();
             Scene cockpitScene = new Scene(cockpitRoot);
             Stage currStage = (Stage)rootPane.getScene().getWindow();
             currStage.setScene(cockpitScene);
