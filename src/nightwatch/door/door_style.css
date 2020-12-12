@@ -1,0 +1,36 @@
+.label {
+    -fx-font-family: "Seven Segment";
+    -fx-text-fill: greenyellow;
+    -fx-font-size: 50;
+    -fx-background-color: black;
+}
+
+.doors-pane {
+    -fx-background-image: url("resources/doors_window.png");
+    -fx-background-size: stretch;
+}
+
+.pin-pane {
+    -fx-background-image: url("resources/pinpad_background.png");
+    -fx-background-size: stretch;
+}
+
+.button-pane {
+    -fx-background-image: url("resources/buttons_background.png");
+    -fx-background-size: stretch;
+}
+
+.button {
+    -fx-background-image: url("resources/pinpad_button.png");
+    -fx-background-size: stretch;
+}
+
+.button-clear {
+    -fx-background-image: url("resources/button_clear.png");
+    -fx-background-size: stretch;
+}
+
+.button-approve {
+    -fx-background-image: url("resources/button_approve.png");
+    -fx-background-size: stretch;
+}

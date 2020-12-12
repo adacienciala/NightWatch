@@ -1,4 +1,4 @@
-package nightwatch;
+package nightwatch.door;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -44,17 +43,15 @@ public class DoorController {
         String pin = codeLabel.getText();
         if (pin.equals("1111")) {
             codeLabel.setText("OK");
-            Thread.sleep(1000);
             fadeOut();
         }
         else {
-            codeLabel.setText("XXXX");
-            Thread.sleep(1000);
             codeLabel.setText("");
         }
     }
 
-    public void fadeOut() {
+    public void fadeOut() throws InterruptedException {
+        Thread.sleep(1000);
         FadeTransition transition = new FadeTransition();
         transition.setDuration(Duration.millis(1000));
         transition.setNode(rootPane);
@@ -67,7 +64,7 @@ public class DoorController {
     public void loadCockpitScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("nightwatch.fxml"));
+                    .getResource("../nightwatch.fxml"));
             Parent cockpitRoot = loader.load();
             Scene cockpitScene = new Scene(cockpitRoot);
             Stage currStage = (Stage)rootPane.getScene().getWindow();
