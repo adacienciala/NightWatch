@@ -1,19 +1,44 @@
 package nightwatch;
 
+import javafx.animation.FadeTransition;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
 public class NightwatchController {
+    @FXML
+    public GridPane rootPane;
+    @FXML
     public Pane lightsPane;
+    @FXML
     public Pane audioPane;
+    @FXML
     public Pane emergencyPane;
 
+    @FXML
+    public void initialize() {
+        rootPane.setOpacity(0);
+        fadeIn();
+    }
+
+    private void fadeIn() {
+        FadeTransition transition = new FadeTransition();
+        transition.setDuration(Duration.millis(1000));
+        transition.setNode(rootPane);
+        transition.setFromValue(0);
+        transition.setToValue(1);
+        transition.play();
+    }
+
+    @FXML
     public void openLightsWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening lights");
         if (!lightsPane.getStyleClass().remove("lights-pane")) {
@@ -30,6 +55,7 @@ public class NightwatchController {
 
     }
 
+    @FXML
     public void openAudioWindow(MouseEvent mouseEvent) {
         System.out.println("Opening audio");
         if (!audioPane.getStyleClass().remove("audio-pane")) {
@@ -50,6 +76,7 @@ public class NightwatchController {
         stage.show();
     }
 
+    @FXML
     public void openEmergencyWindow(MouseEvent mouseEvent) {
         System.out.println("Emergency button!");
         if (!emergencyPane.getStyleClass().remove("emergency-pane")) {

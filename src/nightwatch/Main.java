@@ -4,15 +4,17 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("nightwatch.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("pinVerification.fxml"));
+        Font.loadFont(getClass().getResourceAsStream("Seven Segment.ttf"), 12);
         primaryStage.setTitle("NightWatch");
-        primaryStage.setScene(new Scene(root, 700, 350));
+        primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
 
