@@ -1,0 +1,39 @@
+.grid {
+    -fx-background-image: url('img/cockpit.png');
+    -fx-background-size: stretch;
+}
+
+.lights-pane {
+    -fx-background-image: url('img/im1.png');
+    -fx-background-size: stretch;
+}
+
+.lights-pane-active {
+    -fx-background-image: url('img/im1_activated.png');
+    -fx-background-size: stretch;
+}
+
+.emergency-pane {
+    -fx-background-image: url('img/im2.png');
+    -fx-background-size: stretch;
+}
+
+.emergency-pane-active {
+    -fx-background-image: url('img/im2_activated.png');
+    -fx-background-size: stretch;
+}
+
+.audio-pane {
+    -fx-background-image: url('img/im3.png');
+    -fx-background-size: stretch;
+}
+
+.audio-pane-active {
+    -fx-background-image: url('img/im3_activated.png');
+    -fx-background-size: stretch;
+}
+
+.lights-window {
+    -fx-background-image: url('img/lights_window.jpg');
+    -fx-background-size: stretch;
+}
