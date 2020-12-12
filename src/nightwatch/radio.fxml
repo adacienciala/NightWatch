@@ -15,7 +15,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Label fx:id="knob" prefHeight="100.0" prefWidth="100.0" styleClass="radio-knob" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <Label fx:id="knob" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" styleClass="radio-knob" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
