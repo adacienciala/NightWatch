@@ -46,7 +46,7 @@ public class NightwatchController {
         }
         Stage stage = new Stage();
         stage.setTitle("Radio");
-        stage.setScene(new Scene(root, 450, 450));
+        stage.setScene(new Scene(root, 800, 450));
         stage.show();
     }
 
