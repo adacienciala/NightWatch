@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class RadioController {
-  private @FXML Label knob;
+  @FXML private Label knob;
   private double dragStart;
   private double volume = 0;
 
