@@ -16,7 +16,7 @@
         </rowConstraints>
          <children>
              <Label fx:id="knob" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" styleClass="radio-knob" stylesheets="@radio_style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label text="0Hz" contentDisplay="TEXT_ONLY" GridPane.halignment="CENTER" GridPane.valignment="CENTER" styleClass="radio-text"
+            <Label fx:id="hertz" text="0Hz" contentDisplay="TEXT_ONLY" GridPane.halignment="CENTER" GridPane.valignment="CENTER" styleClass="radio-text"
                 prefHeight="75" prefWidth="150" alignment="CENTER"/>
          </children>
       </GridPane>
