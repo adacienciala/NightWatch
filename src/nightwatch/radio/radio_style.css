@@ -17,6 +17,6 @@
 }
 
 .sine {
-    -fx-background-image: url('resources/sine_resized.png');
+    -fx-background-image: url('resources/sine.png');
     -fx-background-size: 50 100;
 }
