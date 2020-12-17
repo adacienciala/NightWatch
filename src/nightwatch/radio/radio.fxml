@@ -3,9 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-            styleClass="radio-window" stylesheets="@radio_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="nightwatch.radio.RadioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="radio-window" stylesheets="@radio_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightwatch.radio.RadioController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -18,8 +16,9 @@
         </rowConstraints>
          <children>
              <Label fx:id="knob" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" styleClass="radio-knob" stylesheets="@radio_style.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label fx:id="hertz" text="0Hz" contentDisplay="TEXT_ONLY" GridPane.halignment="CENTER" GridPane.valignment="CENTER" styleClass="radio-text"
-                prefHeight="75" prefWidth="150" alignment="CENTER"/>
+            <Label fx:id="hertz" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="75" prefWidth="150" styleClass="radio-text" text="0Hz" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="sine" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                   GridPane.valignment="CENTER" styleClass="sine"/>
          </children>
       </GridPane>
    </children>

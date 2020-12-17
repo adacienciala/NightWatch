@@ -15,3 +15,8 @@
     -fx-font-size: 50;
     -fx-background-color: black;
 }
+
+.sine {
+    -fx-background-image: url('resources/sine_resized.png');
+    -fx-background-size: 50 100;
+}
