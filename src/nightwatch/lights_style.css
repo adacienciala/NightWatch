@@ -1,0 +1,35 @@
+.lights-window {
+    -fx-background-image: url('img/lightsBackground.png');
+    -fx-background-size: stretch;
+}
+
+.slider .track {
+    -fx-pref-height: 5;
+    -fx-background-color: darkgray;
+}
+
+.slider .thumb {
+    -fx-pref-height: 30;
+    -fx-pref-width: 30;
+    -fx-background-color: black;
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 1.0), 20, 0, 0, 0);
+}
+
+.note1 {
+    -fx-background-image: url('img/Note_1.png');
+    -fx-background-size: stretch;
+}
+
+.note2 {
+    -fx-background-image: url('img/Note_2.png');
+    -fx-background-size: stretch;
+}
+
+.note3 {
+    -fx-background-image: url('img/Note_3.png');
+    -fx-background-size: stretch;
+}
+.note4 {
+    -fx-background-image: url('img/Note_4.png');
+    -fx-background-size: stretch;
+}

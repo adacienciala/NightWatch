@@ -50,7 +50,7 @@ public class NightwatchController {
         Parent root = FXMLLoader.load(getClass().getResource("lights.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Lights");
-        stage.setScene(new Scene(root, 450, 450));
+        stage.setScene(new Scene(root, 600, 800));
         stage.show();
 
     }

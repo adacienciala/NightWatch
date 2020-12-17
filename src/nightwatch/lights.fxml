@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="lights-window" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightwatch.LightsController">
-
-</AnchorPane>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="lights-window" stylesheets="@lights_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightwatch.LightsController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.0" minWidth="10.0" prefWidth="439.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="161.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Slider>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </Slider>
+      <Slider GridPane.rowIndex="1">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </Slider>
+      <Slider GridPane.rowIndex="2">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </Slider>
+      <Slider GridPane.rowIndex="3">
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </Slider>
+      <Label prefHeight="140.0" prefWidth="140.0" styleClass="note1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label prefHeight="140.0" prefWidth="140.0" styleClass="note2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Label prefHeight="140.0" prefWidth="140.0" styleClass="note3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Label prefHeight="140.0" prefWidth="140.0" styleClass="note4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>
