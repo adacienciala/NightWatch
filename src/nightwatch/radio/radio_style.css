@@ -7,3 +7,11 @@
     -fx-background-image: url('resources/radio_window.png');
     -fx-background-size: stretch;
 }
+
+.radio-text {
+    -fx-background-radius: 10px;
+    -fx-font-family: "Seven Segment";
+    -fx-text-fill: red;
+    -fx-font-size: 50;
+    -fx-background-color: black;
+}
