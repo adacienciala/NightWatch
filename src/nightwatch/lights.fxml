@@ -16,22 +16,22 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Slider>
+      <Slider fx:id="slider1">
          <padding>
             <Insets left="30.0" right="30.0" />
          </padding>
       </Slider>
-      <Slider GridPane.rowIndex="1">
+      <Slider fx:id="slider2" GridPane.rowIndex="1">
          <padding>
             <Insets left="30.0" right="30.0" />
          </padding>
       </Slider>
-      <Slider GridPane.rowIndex="2">
+      <Slider fx:id="slider3" GridPane.rowIndex="2">
          <padding>
             <Insets left="30.0" right="30.0" />
          </padding>
       </Slider>
-      <Slider GridPane.rowIndex="3">
+      <Slider fx:id="slider4" GridPane.rowIndex="3">
          <padding>
             <Insets left="30.0" right="30.0" />
          </padding>

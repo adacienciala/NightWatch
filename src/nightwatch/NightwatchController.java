@@ -10,18 +10,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import nightwatch.radio.RadioController;
 
 import java.io.IOException;
 
 public class NightwatchController {
-    @FXML
-    public GridPane rootPane;
-    @FXML
-    public Pane lightsPane;
-    @FXML
-    public Pane audioPane;
-    @FXML
-    public Pane emergencyPane;
+    @FXML public GridPane rootPane;
+    @FXML public Pane lightsPane;
+    @FXML public Pane audioPane;
+    @FXML public Pane emergencyPane;
 
     @FXML
     public void initialize() {
@@ -38,6 +35,10 @@ public class NightwatchController {
         transition.play();
     }
 
+    public void setLightsValue(int room, double value) {
+
+    }
+
     @FXML
     public void openLightsWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening lights");
@@ -47,7 +48,9 @@ public class NightwatchController {
         }
         else lightsPane.getStyleClass().add("lights-pane-active");
 
-        Parent root = FXMLLoader.load(getClass().getResource("lights.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("lights.fxml"));
+        Parent root = loader.load();
+        ((LightsController)loader.getController()).setParentController(this);
         Stage stage = new Stage();
         stage.setTitle("Lights");
         stage.setScene(new Scene(root, 600, 800));
