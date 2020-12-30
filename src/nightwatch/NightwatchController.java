@@ -16,6 +16,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import nightwatch.cameras.CamerasController;
 import nightwatch.radio.RadioController;
 
 import java.io.File;
@@ -99,7 +100,7 @@ public class NightwatchController {
     }
 
     @FXML
-    public void openCamerasWindow(MouseEvent mouseEvent) throws MalformedURLException {
+    public void openCamerasWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening cameras");
         if (!camerasPane.getStyleClass().remove("cameras-pane")) {
             camerasPane.getStyleClass().remove("cameras-pane-active");
@@ -107,35 +108,14 @@ public class NightwatchController {
         }
         else camerasPane.getStyleClass().add("cameras-pane-active");
         for (int i = 1; i <= 4; ++i) {
-            File f = new File("src\\nightwatch\\cameras\\resources\\", "cam"+i+"footage.mp4");
-            Media media = new Media(f.toURI().toURL().toString());
-            MediaPlayer player = new MediaPlayer(media);
-            MediaView viewer = new MediaView(player);
-            DoubleProperty width = viewer.fitWidthProperty();
-            DoubleProperty height = viewer.fitHeightProperty();
-            width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
-            height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
-            AnchorPane root = null;
-            try {
-                 root = FXMLLoader.<AnchorPane>load(getClass().getResource("cameras/cameras.fxml"));
-            } catch (Exception e) {
-                e.printStackTrace();
-                return;
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
+            Parent root = loader.load();
+            ((CamerasController)loader.getController()).setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+i+"footage.mp4"));
             Stage stage = new Stage();
             stage.setTitle("Camera" + i);
-            root.getChildren().add(viewer);
             Scene scene = new Scene(root, 600, 400);
             stage.setScene(scene);
             stage.show();
-            player.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    player.seek(Duration.ZERO);
-                    player.play();
-                }
-            });
-            player.play();
         }
 
     }
