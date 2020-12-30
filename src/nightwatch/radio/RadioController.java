@@ -2,6 +2,7 @@ package nightwatch.radio;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import nightwatch.NightwatchController;
 
 public class RadioController {
   @FXML private Label knob;
@@ -10,6 +11,7 @@ public class RadioController {
   private double dragStart;
   private double volume = 0;
   private int value = 0;
+  private NightwatchController parentController;
 
   public void initialize() {
     knob.setOnMousePressed(e -> {
@@ -44,4 +46,9 @@ public class RadioController {
     sineThread.start();
 
   }
+
+  public void setParentController(NightwatchController controller) {
+    parentController = controller;
+  }
+
 }
