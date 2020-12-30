@@ -32,3 +32,13 @@
     -fx-background-image: url('img/im3_activated.png');
     -fx-background-size: stretch;
 }
+
+.cameras-pane {
+    -fx-background-image: url('img/im4.png');
+    -fx-background-size: stretch;
+}
+
+.cameras-pane-active {
+    -fx-background-image: url('img/im4_activated.png');
+    -fx-background-size: stretch;
+}

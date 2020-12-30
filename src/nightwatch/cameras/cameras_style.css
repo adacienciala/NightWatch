@@ -1,0 +1,19 @@
+.camera1-pane {
+    -fx-background-image: url("resources/camera1_window.png");
+    -fx-background-size: stretch;
+}
+
+.camera2-pane {
+    -fx-background-image: url("resources/camera2_window.png");
+    -fx-background-size: stretch;
+}
+
+.camera3-pane {
+    -fx-background-image: url("resources/camera3_window.png");
+    -fx-background-size: stretch;
+}
+
+.camera4-pane {
+    -fx-background-image: url("resources/camera4_window.png");
+    -fx-background-size: stretch;
+}

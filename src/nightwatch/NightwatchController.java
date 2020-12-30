@@ -22,6 +22,8 @@ public class NightwatchController {
     public Pane audioPane;
     @FXML
     public Pane emergencyPane;
+    @FXML
+    public Pane camerasPane;
 
     @FXML
     public void initialize() {
@@ -72,7 +74,7 @@ public class NightwatchController {
         }
         Stage stage = new Stage();
         stage.setTitle("Radio");
-        stage.setScene(new Scene(root, 800, 450));
+        stage.setScene(new Scene(root, 800, 400));
         stage.show();
     }
 
@@ -84,5 +86,31 @@ public class NightwatchController {
             emergencyPane.getStyleClass().add("emergency-pane");
         }
         else emergencyPane.getStyleClass().add("emergency-pane-active");
+    }
+
+    @FXML
+    public void openCamerasWindow(MouseEvent mouseEvent) {
+        System.out.println("Opening cameras");
+        if (!camerasPane.getStyleClass().remove("cameras-pane")) {
+            camerasPane.getStyleClass().remove("cameras-pane-active");
+            camerasPane.getStyleClass().add("cameras-pane");
+        }
+        else camerasPane.getStyleClass().add("cameras-pane-active");
+        for (int i = 1; i <= 4; ++i) {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("cameras/cameras.fxml"));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+            Stage stage = new Stage();
+            stage.setTitle("Camera" + i);
+            Scene scene = new Scene(root, 600, 400);
+            scene.getRoot().getStyleClass().add("camera"+i+"-pane");
+            stage.setScene(scene);
+            stage.show();
+        }
+
     }
 }

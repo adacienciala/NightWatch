@@ -19,10 +19,6 @@ public class DoorController {
     public AnchorPane rootPane;
     @FXML
     private Label codeLabel;
-    @FXML
-    private Button approveBtn;
-    @FXML
-    private Button cancelBtn;
 
     @FXML
     public void clearCode(ActionEvent event) {
@@ -51,9 +47,8 @@ public class DoorController {
     }
 
     public void fadeOut() throws InterruptedException {
-        Thread.sleep(1000);
         FadeTransition transition = new FadeTransition();
-        transition.setDuration(Duration.millis(1000));
+        transition.setDuration(Duration.millis(2000));
         transition.setNode(rootPane);
         transition.setFromValue(1);
         transition.setToValue(0);
