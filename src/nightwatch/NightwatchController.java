@@ -19,6 +19,7 @@ public class NightwatchController {
     @FXML public Pane lightsPane;
     @FXML public Pane audioPane;
     @FXML public Pane emergencyPane;
+    @FXML public Pane camerasPane;
 
     @FXML
     public void initialize() {
@@ -107,8 +108,8 @@ public class NightwatchController {
             }
             Stage stage = new Stage();
             stage.setTitle("Camera" + i);
+            root.getStyleClass().add("camera"+i+"-pane");
             Scene scene = new Scene(root, 600, 400);
-            scene.getRoot().getStyleClass().add("camera"+i+"-pane");
             stage.setScene(scene);
             stage.show();
         }
