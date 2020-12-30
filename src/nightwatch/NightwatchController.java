@@ -1,18 +1,26 @@
 package nightwatch;
 
 import javafx.animation.FadeTransition;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nightwatch.radio.RadioController;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class NightwatchController {
     @FXML public GridPane rootPane;
@@ -91,7 +99,7 @@ public class NightwatchController {
     }
 
     @FXML
-    public void openCamerasWindow(MouseEvent mouseEvent) {
+    public void openCamerasWindow(MouseEvent mouseEvent) throws MalformedURLException {
         System.out.println("Opening cameras");
         if (!camerasPane.getStyleClass().remove("cameras-pane")) {
             camerasPane.getStyleClass().remove("cameras-pane-active");
@@ -99,19 +107,35 @@ public class NightwatchController {
         }
         else camerasPane.getStyleClass().add("cameras-pane-active");
         for (int i = 1; i <= 4; ++i) {
-            Parent root = null;
+            File f = new File("src\\nightwatch\\cameras\\resources\\", "cam"+i+"footage.mp4");
+            Media media = new Media(f.toURI().toURL().toString());
+            MediaPlayer player = new MediaPlayer(media);
+            MediaView viewer = new MediaView(player);
+            DoubleProperty width = viewer.fitWidthProperty();
+            DoubleProperty height = viewer.fitHeightProperty();
+            width.bind(Bindings.selectDouble(viewer.sceneProperty(), "width"));
+            height.bind(Bindings.selectDouble(viewer.sceneProperty(), "height"));
+            AnchorPane root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("cameras/cameras.fxml"));
+                 root = FXMLLoader.<AnchorPane>load(getClass().getResource("cameras/cameras.fxml"));
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
             }
             Stage stage = new Stage();
             stage.setTitle("Camera" + i);
-            root.getStyleClass().add("camera"+i+"-pane");
+            root.getChildren().add(viewer);
             Scene scene = new Scene(root, 600, 400);
             stage.setScene(scene);
             stage.show();
+            player.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    player.seek(Duration.ZERO);
+                    player.play();
+                }
+            });
+            player.play();
         }
 
     }
