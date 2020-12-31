@@ -15,14 +15,15 @@ public class CamerasController {
 
     public Pane screen;
     private File cameraFootage;
-    private MediaPlayer player;
+    private MediaView viewer;
 
     public void setCameraFootage(File cameraFootage) throws MalformedURLException {
         this.cameraFootage = cameraFootage;
         Media media = new Media(cameraFootage.toURI().toURL().toString());
-        player = new MediaPlayer(media);
-        MediaView viewer = new MediaView(player);
+        MediaPlayer player = new MediaPlayer(media);
+        viewer = new MediaView(player);
         viewer.fitWidthProperty().bind(screen.widthProperty());
+        viewer.fitHeightProperty().bind(screen.heightProperty());
         screen.getChildren().add(viewer);
         player.setOnEndOfMedia(() -> {
             player.seek(Duration.ZERO);
@@ -33,7 +34,11 @@ public class CamerasController {
     }
 
     public void setVolume(double value) {
-        this.player.setVolume(value);
+        this.viewer.getMediaPlayer().setVolume(value);
+    }
+
+    public void setOpacity(double value) {
+        this.viewer.setOpacity(value);
     }
 
 }

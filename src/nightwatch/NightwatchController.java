@@ -30,6 +30,8 @@ public class NightwatchController {
     @FXML public Pane emergencyPane;
     @FXML public Pane camerasPane;
 
+    CamerasController[] cameras = new CamerasController[4];
+
     @FXML
     public void initialize() {
         rootPane.setOpacity(0);
@@ -46,11 +48,10 @@ public class NightwatchController {
     }
 
     public void setLightsValue(int room, double value) {
-
     }
 
-    public void setVolume(int room, double volume) {
-
+    public void setVolumeValue(int room, double value) {
+        cameras[room].setVolume(value);
     }
 
     @FXML
@@ -116,7 +117,8 @@ public class NightwatchController {
         for (int i = 1; i <= 4; ++i) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
             Parent root = loader.load();
-            ((CamerasController)loader.getController()).setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+i+"footage.mp4"));
+            cameras[i] = loader.getController();
+            cameras[i].setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+i+"footage.mp4"));
             Stage stage = new Stage();
             stage.setTitle("Camera" + i);
             Scene scene = new Scene(root, 600, 400);
