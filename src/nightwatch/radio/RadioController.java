@@ -2,7 +2,12 @@ package nightwatch.radio;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import nightwatch.NightwatchController;
+
+import java.nio.file.Paths;
 
 public class RadioController {
   @FXML private Label knob;
@@ -15,7 +20,16 @@ public class RadioController {
 
   private final int[] frequencies = {30, 60, 90, 120};
 
+  private static final String soundFilename = "src/nightwatch/radio/resources/static.mp3";
+  private static final Media sound = new Media(Paths.get(soundFilename).toUri().toString());
+  private static MediaPlayer media = new MediaPlayer(sound);
+
   public void initialize() {
+    media.setOnEndOfMedia(() -> {
+      media.seek(Duration.ZERO);
+      media.play();
+    });
+    media.play();
     knob.setOnMousePressed(e -> {
       dragStart = e.getScreenX();
     });
@@ -31,9 +45,13 @@ public class RadioController {
       for (int i = 0; i < frequencies.length; i++) {
         int distance = Math.abs(frequencies[i] - value);
         if (distance <= 9) {
-          parentController.setVolumeValue(i, 1.0f / ((double)distance + 1.0f));
+          double volumeLevel = 1.0f / ((double)distance + 1.0f);
+          parentController.setVolumeValue(i, volumeLevel);
+          media.setVolume(1.0f - volumeLevel);
+          System.out.println("setting static to " + (1.0f - volumeLevel));
         } else {
           parentController.setVolumeValue(i, 0.0f);
+          media.setVolume(1.0f);
         }
       }
     });
