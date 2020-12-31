@@ -48,7 +48,7 @@ public class RadioController {
     new Thread(() -> {
       try {
         Thread.sleep(100);
-        knob.getScene().setOnKeyReleased(e -> {
+        knob.getScene().setOnKeyPressed(e -> {
           if (e.getCode().toString().equals("RIGHT")) {
             value++;
             if (value > 150) value = 150;
