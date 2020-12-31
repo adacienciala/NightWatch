@@ -11,6 +11,10 @@ public class LightsController {
   private NightwatchController parentController;
 
   public void initialize() {
+    slider1.setValue(100.0);
+    slider2.setValue(100.0);
+    slider3.setValue(100.0);
+    slider4.setValue(100.0);
     slider1.setOnMouseDragged(e -> {
       System.out.println("value " + slider1.getValue());
       parentController.setLightsValue(0, slider1.getValue());
