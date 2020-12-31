@@ -48,6 +48,7 @@ public class NightwatchController {
     }
 
     public void setLightsValue(int room, double value) {
+        cameras[room].setOpacity(value/100.0);
     }
 
     public void setVolumeValue(int room, double value) {
@@ -114,13 +115,13 @@ public class NightwatchController {
             camerasPane.getStyleClass().add("cameras-pane");
         }
         else camerasPane.getStyleClass().add("cameras-pane-active");
-        for (int i = 1; i <= 4; ++i) {
+        for (int i = 0; i < 4; ++i) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
             Parent root = loader.load();
             cameras[i] = loader.getController();
-            cameras[i].setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+i+"footage.mp4"));
+            cameras[i].setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+(i+1)+"footage.mp4"));
             Stage stage = new Stage();
-            stage.setTitle("Camera" + i);
+            stage.setTitle("Camera" + (i+1));
             Scene scene = new Scene(root, 600, 400);
             stage.setScene(scene);
             stage.show();
