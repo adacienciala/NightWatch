@@ -1,19 +1,13 @@
 package nightwatch;
 
 import javafx.animation.FadeTransition;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nightwatch.cameras.CamerasController;
@@ -21,7 +15,6 @@ import nightwatch.radio.RadioController;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class NightwatchController {
     @FXML public GridPane rootPane;

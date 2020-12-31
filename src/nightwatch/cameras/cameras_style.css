@@ -17,3 +17,8 @@
     -fx-background-image: url("resources/camera4_window.png");
     -fx-background-size: stretch;
 }
+
+.camera-frame {
+    -fx-background-image: url("resources/camera_frame.png");
+    -fx-background-size: stretch;
+}
