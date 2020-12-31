@@ -4,8 +4,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -30,6 +28,7 @@ public class CamerasController {
             player.play();
         });
         player.play();
+        setVolume(0);
         System.out.println(cameraFootage);
     }
 
