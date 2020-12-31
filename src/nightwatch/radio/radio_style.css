@@ -4,7 +4,7 @@
 }
 
 .radio-window {
-    -fx-background-image: url('resources/radio_window.png');
+    -fx-background-image: url('resources/radio_BG.png');
     -fx-background-size: stretch;
 }
 

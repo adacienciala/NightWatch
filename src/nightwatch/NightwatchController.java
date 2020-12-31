@@ -93,7 +93,7 @@ public class NightwatchController {
         ((RadioController)loader.getController()).setParentController(this);
         Stage stage = new Stage();
         stage.setTitle("Radio");
-        stage.setScene(new Scene(root, 800, 400));
+        stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
 
