@@ -13,6 +13,8 @@ public class RadioController {
   private int value = 0;
   private NightwatchController parentController;
 
+  private final int[] frequencies = {30, 60, 90, 120};
+
   public void initialize() {
     knob.setOnMousePressed(e -> {
       dragStart = e.getScreenX();
@@ -26,6 +28,14 @@ public class RadioController {
       int deg = (int)Math.floor(180 * volume);
       knob.setStyle("-fx-rotate: " + deg + ";");
       hertz.setText(value + "Hz");
+      for (int i = 0; i < frequencies.length; i++) {
+        int distance = Math.abs(frequencies[i] - value);
+        if (distance <= 9) {
+          parentController.setVolume(i, 1.0f / ((double)distance + 1.0f));
+        } else {
+          parentController.setVolume(i, 0.0f);
+        }
+      }
     });
 
     Thread sineThread = new Thread(() -> {

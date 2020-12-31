@@ -49,6 +49,10 @@ public class NightwatchController {
 
     }
 
+    public void setVolume(int room, double volume) {
+
+    }
+
     @FXML
     public void openLightsWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening lights");
