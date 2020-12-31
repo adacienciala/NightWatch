@@ -1,5 +1,6 @@
 package nightwatch.radio;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
@@ -24,7 +25,42 @@ public class RadioController {
   private static final Media sound = new Media(Paths.get(soundFilename).toUri().toString());
   private static final MediaPlayer staticMedia = new MediaPlayer(sound);
 
+  private void setVolumes() {
+    double maxStatic = 0.5f;
+    for (int i = 0; i < frequencies.length; i++) {
+      int distance = Math.abs(frequencies[i] - value);
+      if (distance <= 9) {
+        double volumeLevel = 1.0f / ((double)distance + 1.0f);
+        double staticLevel = (1.0f - volumeLevel) / 2.0f;
+        staticMedia.setVolume(staticLevel);
+        parentController.setVolumeValue(i, volumeLevel);
+        if (staticLevel < maxStatic) {
+          maxStatic = staticLevel;
+        }
+      } else {
+        parentController.setVolumeValue(i, 0.0f);
+      }
+    }
+    staticMedia.setVolume(maxStatic);
+  }
+
   public void initialize() {
+    new Thread(() -> {
+      try {
+        Thread.sleep(100);
+        knob.getScene().setOnKeyReleased(e -> {
+          if (e.getCode().toString().equals("RIGHT")) {
+            value++;
+            if (value > 150) value = 150;
+          } else if (e.getCode().toString().equals("LEFT")) {
+            value--;
+            if (value < 10) value = 10;
+          }
+          hertz.setText(value + "Hz");
+          setVolumes();
+        });
+      } catch (Exception ignored) {}
+    }).start();
     staticMedia.setVolume(0.5f);
     staticMedia.setOnEndOfMedia(() -> {
       staticMedia.seek(Duration.ZERO);
@@ -43,22 +79,7 @@ public class RadioController {
       int deg = (int)Math.floor(180 * volume);
       knob.setStyle("-fx-rotate: " + deg + ";");
       hertz.setText(value + "Hz");
-      double maxStatic = 0.5f;
-      for (int i = 0; i < frequencies.length; i++) {
-        int distance = Math.abs(frequencies[i] - value);
-        if (distance <= 9) {
-          double volumeLevel = 1.0f / ((double)distance + 1.0f);
-          double staticLevel = (1.0f - volumeLevel) / 2.0f;
-          staticMedia.setVolume(staticLevel);
-          parentController.setVolumeValue(i, volumeLevel);
-          if (staticLevel < maxStatic) {
-            maxStatic = staticLevel;
-          }
-        } else {
-          parentController.setVolumeValue(i, 0.0f);
-        }
-      }
-      staticMedia.setVolume(maxStatic);
+      setVolumes();
     });
 
     Thread sineThread = new Thread(() -> {
@@ -66,7 +87,9 @@ public class RadioController {
       while (true) {
         long freq = (150 + 30 - value);
         String s = "-fx-background-position: " + (i++) + ";-fx-background-size: " + freq + " 100;";
-        sine.setStyle(s);
+        Platform.runLater(() -> {
+          sine.setStyle(s);
+        });
         try {
           Thread.sleep(50);
         } catch (Exception e) {
