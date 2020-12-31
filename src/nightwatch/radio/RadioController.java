@@ -22,14 +22,15 @@ public class RadioController {
 
   private static final String soundFilename = "src/nightwatch/radio/resources/static.mp3";
   private static final Media sound = new Media(Paths.get(soundFilename).toUri().toString());
-  private static MediaPlayer media = new MediaPlayer(sound);
+  private static final MediaPlayer staticMedia = new MediaPlayer(sound);
 
   public void initialize() {
-    media.setOnEndOfMedia(() -> {
-      media.seek(Duration.ZERO);
-      media.play();
+    staticMedia.setVolume(0.5f);
+    staticMedia.setOnEndOfMedia(() -> {
+      staticMedia.seek(Duration.ZERO);
+      staticMedia.play();
     });
-    media.play();
+    staticMedia.play();
     knob.setOnMousePressed(e -> {
       dragStart = e.getScreenX();
     });
@@ -42,18 +43,22 @@ public class RadioController {
       int deg = (int)Math.floor(180 * volume);
       knob.setStyle("-fx-rotate: " + deg + ";");
       hertz.setText(value + "Hz");
+      double maxStatic = 0.5f;
       for (int i = 0; i < frequencies.length; i++) {
         int distance = Math.abs(frequencies[i] - value);
         if (distance <= 9) {
           double volumeLevel = 1.0f / ((double)distance + 1.0f);
+          double staticLevel = (1.0f - volumeLevel) / 2.0f;
+          staticMedia.setVolume(staticLevel);
           parentController.setVolumeValue(i, volumeLevel);
-          media.setVolume(1.0f - volumeLevel);
-          System.out.println("setting static to " + (1.0f - volumeLevel));
+          if (staticLevel < maxStatic) {
+            maxStatic = staticLevel;
+          }
         } else {
           parentController.setVolumeValue(i, 0.0f);
-          media.setVolume(1.0f);
         }
       }
+      staticMedia.setVolume(maxStatic);
     });
 
     Thread sineThread = new Thread(() -> {
