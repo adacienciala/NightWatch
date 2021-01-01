@@ -1,6 +1,7 @@
 package nightwatch;
 
 import javafx.animation.FadeTransition;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -110,6 +111,9 @@ public class NightwatchController {
         }
         else camerasPane.getStyleClass().add("cameras-pane-active");
 
+        int sceneMinWidth = 660;
+        int sceneMinHeight = 380;
+
         for (int i = 0; i < 4; ++i) {
             if (cameras[i] == null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
@@ -117,10 +121,23 @@ public class NightwatchController {
                 cameras[i] = loader.getController();
                 cameras[i].setCameraFootage(new File(
                         "src/nightwatch/cameras/resources/",
-                        "cam"+(i+1)+"footage.mp4"));
-                Scene scene = new Scene(root, 600, 400);
+                        "cam"+(i+1)+"_footage.mp4"));
+                Scene scene = new Scene(root, sceneMinWidth, sceneMinHeight);
             } else if (!cameras[i].isOpened()){
                 final Stage stage = new Stage();
+                double factor = 0.62;
+                stage.minHeightProperty().bind(Bindings
+                        .when(stage.widthProperty().multiply(factor)
+                                .greaterThan(sceneMinHeight))
+                        .then(stage.widthProperty().multiply(factor))
+                        .otherwise(sceneMinHeight));
+                stage.minWidthProperty().bind(Bindings
+                        .when(stage.heightProperty().multiply(factor)
+                                .greaterThan(sceneMinWidth))
+                        .then(stage.widthProperty().multiply(factor))
+                        .otherwise(sceneMinWidth));
+                stage.maxHeightProperty().bind(stage.widthProperty().multiply(factor));
+
                 stage.setTitle("Camera" + (i+1));
                 Scene scene = cameras[i].screen.getScene();
                 stage.setScene(scene);
