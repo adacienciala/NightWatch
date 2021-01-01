@@ -26,9 +26,10 @@ public class NightwatchController {
     CamerasController[] cameras = new CamerasController[4];
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         rootPane.setOpacity(0);
         fadeIn();
+        openCamerasWindow(null);
     }
 
     private void fadeIn() {
@@ -108,16 +109,26 @@ public class NightwatchController {
             camerasPane.getStyleClass().add("cameras-pane");
         }
         else camerasPane.getStyleClass().add("cameras-pane-active");
+
         for (int i = 0; i < 4; ++i) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
-            Parent root = loader.load();
-            cameras[i] = loader.getController();
-            cameras[i].setCameraFootage(new File("src/nightwatch/cameras/resources/", "cam"+(i+1)+"footage.mp4"));
-            Stage stage = new Stage();
-            stage.setTitle("Camera" + (i+1));
-            Scene scene = new Scene(root, 600, 400);
-            stage.setScene(scene);
-            stage.show();
+            if (cameras[i] == null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("cameras/cameras.fxml"));
+                Parent root = loader.load();
+                cameras[i] = loader.getController();
+                cameras[i].setCameraFootage(new File(
+                        "src/nightwatch/cameras/resources/",
+                        "cam"+(i+1)+"footage.mp4"));
+                Scene scene = new Scene(root, 600, 400);
+            } else if (!cameras[i].isOpened()){
+                final Stage stage = new Stage();
+                stage.setTitle("Camera" + (i+1));
+                Scene scene = cameras[i].screen.getScene();
+                stage.setScene(scene);
+                cameras[i].setOpened(true);
+                int cameraID = i;
+                stage.setOnCloseRequest(e -> cameras[cameraID].setOpened(false));
+                stage.show();
+            }
         }
 
     }

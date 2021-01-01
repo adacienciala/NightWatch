@@ -14,12 +14,19 @@ import java.net.MalformedURLException;
 public class CamerasController {
 
     public Pane screen;
-    private File cameraFootage;
     private MediaView viewer;
-    Scale newScale = new Scale();
+    private final Scale newScale = new Scale();
+    private boolean opened = false;
+
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
 
     public void setCameraFootage(File cameraFootage) throws MalformedURLException {
-        this.cameraFootage = cameraFootage;
         Media media = new Media(cameraFootage.toURI().toURL().toString());
         MediaPlayer player = new MediaPlayer(media);
         viewer = new MediaView(player);
