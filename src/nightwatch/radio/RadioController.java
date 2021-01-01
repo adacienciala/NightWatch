@@ -59,6 +59,13 @@ public class RadioController {
           hertz.setText(value + "Hz");
           setVolumes();
         });
+        knob.getScene().getWindow().setOnCloseRequest(e -> {
+          staticMedia.stop();
+          staticMedia.dispose();
+          for (int i = 0; i < frequencies.length; i++) {
+            parentController.setVolumeValue(i, 0.0f);
+          }
+        });
       } catch (Exception ignored) {}
     }).start();
     staticMedia.setVolume(0.5f);
