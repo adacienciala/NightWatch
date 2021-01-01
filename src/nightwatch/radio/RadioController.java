@@ -65,6 +65,7 @@ public class RadioController {
           for (int i = 0; i < frequencies.length; i++) {
             parentController.setVolumeValue(i, 0.0f);
           }
+          NightwatchController.playSound("radio close", 1.0f);
         });
       } catch (Exception ignored) {}
     }).start();
