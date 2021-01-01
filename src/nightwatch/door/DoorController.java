@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import nightwatch.NightwatchController;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class DoorController {
 
     @FXML
     public void clearCode(ActionEvent event) {
+        NightwatchController.playSound("button click 1");
         codeLabel.setText("");
     }
 
@@ -31,6 +33,7 @@ public class DoorController {
         String currPin = codeLabel.getText();
         if (currPin.length()<4) {
             codeLabel.setText(currPin+b.getText());
+            NightwatchController.playSound("button click 1");
         }
     }
 
@@ -38,10 +41,16 @@ public class DoorController {
     public void verifyAccess(ActionEvent event) throws InterruptedException {
         String pin = codeLabel.getText();
         if (pin.equals("1111")) {
+            try {
+                NightwatchController.playSound("access granted");
+                Thread.sleep(200);
+            } catch (Exception ignore) {}
+            NightwatchController.playSound("door open");
             codeLabel.setText("OK");
             fadeOut();
         }
         else {
+            NightwatchController.playSound("access denied");
             codeLabel.setText("");
         }
     }

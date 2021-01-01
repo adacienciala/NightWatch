@@ -31,6 +31,12 @@ public class LightsController {
       System.out.println("value " + slider4.getValue());
       parentController.setLightsValue(3, slider4.getValue());
     });
+    new Thread(() -> {
+      NightwatchController.sleepFor(100);
+      slider1.getScene().getWindow().setOnCloseRequest(e -> {
+        NightwatchController.playSound("lights close");
+      });
+    }).start();
   }
 
   public void setParentController(NightwatchController controller) {
