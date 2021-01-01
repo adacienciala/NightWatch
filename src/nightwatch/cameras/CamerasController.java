@@ -1,5 +1,7 @@
 package nightwatch.cameras;
 
+import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -10,13 +12,33 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CamerasController {
 
     public Pane screen;
+    public Label detailsLabel;
     private MediaView viewer;
     private final Scale newScale = new Scale();
     private boolean opened = false;
+    private String localization = "";
+
+    public void initialize() {
+        new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) { }
+                final String time = simpleDateFormat.format(new Date());
+                Platform.runLater(() -> {
+                    String text = "CAM-" + localization + "\n" + time;
+                    detailsLabel.setText(text);
+                });
+            }
+        }).start();
+    }
 
     public boolean isOpened() {
         return opened;
@@ -26,7 +48,8 @@ public class CamerasController {
         this.opened = opened;
     }
 
-    public void setCameraFootage(File cameraFootage) throws MalformedURLException {
+    public void setCameraFootage(File cameraFootage, String localization) throws MalformedURLException {
+        this.localization = localization;
         Media media = new Media(cameraFootage.toURI().toURL().toString());
         MediaPlayer player = new MediaPlayer(media);
         viewer = new MediaView(player);

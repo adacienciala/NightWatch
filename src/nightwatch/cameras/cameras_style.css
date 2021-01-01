@@ -1,24 +1,10 @@
-.camera1-pane {
-    -fx-background-image: url("resources/camera1_window.png");
-    -fx-background-size: stretch;
-}
-
-.camera2-pane {
-    -fx-background-image: url("resources/camera2_window.png");
-    -fx-background-size: stretch;
-}
-
-.camera3-pane {
-    -fx-background-image: url("resources/camera3_window.png");
-    -fx-background-size: stretch;
-}
-
-.camera4-pane {
-    -fx-background-image: url("resources/camera4_window.png");
-    -fx-background-size: stretch;
-}
-
 .camera-frame {
     -fx-background-image: url("resources/camera_frame.png");
     -fx-background-size: stretch;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: limegreen;
+    -fx-font-size: 25;
 }

@@ -25,6 +25,7 @@ public class NightwatchController {
     @FXML public Pane camerasPane;
 
     CamerasController[] cameras = new CamerasController[4];
+    String[] localizations = {"Entrance", "Lockers", "Main Deposit", "Halls"};
 
     @FXML
     public void initialize() throws IOException {
@@ -121,7 +122,8 @@ public class NightwatchController {
                 cameras[i] = loader.getController();
                 cameras[i].setCameraFootage(new File(
                         "src/nightwatch/cameras/resources/",
-                        "cam"+(i+1)+"_footage.mp4"));
+                        "cam"+(i+1)+"_footage.mp4"),
+                        localizations[i]);
                 Scene scene = new Scene(root, sceneMinWidth, sceneMinHeight);
             } else if (!cameras[i].isOpened()){
                 final Stage stage = new Stage();
@@ -138,12 +140,12 @@ public class NightwatchController {
                         .otherwise(sceneMinWidth));
                 stage.maxHeightProperty().bind(stage.widthProperty().multiply(factor));
 
-                stage.setTitle("Camera" + (i+1));
-                Scene scene = cameras[i].screen.getScene();
-                stage.setScene(scene);
-                cameras[i].setOpened(true);
                 int cameraID = i;
+                Scene scene = cameras[cameraID].screen.getScene();
+                stage.setScene(scene);
+                stage.setTitle(String.format("CAM%02d", cameraID+1));
                 stage.setOnCloseRequest(e -> cameras[cameraID].setOpened(false));
+                cameras[cameraID].setOpened(true);
                 stage.show();
             }
         }
