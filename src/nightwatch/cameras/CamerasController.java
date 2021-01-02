@@ -18,7 +18,8 @@ import java.util.Date;
 public class CamerasController {
 
     public Pane screen;
-    public Label detailsLabel;
+    public Label dataLabel;
+    public Label camLabel;
     private MediaView viewer;
     private final Scale newScale = new Scale();
     private boolean opened = false;
@@ -26,15 +27,15 @@ public class CamerasController {
 
     public void initialize() {
         new Thread(() -> {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd EEE \nHH:mm:ss");
             while (true) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ignored) { }
                 final String time = simpleDateFormat.format(new Date());
                 Platform.runLater(() -> {
-                    String text = "CAM-" + localization + "\n" + time;
-                    detailsLabel.setText(text);
+                    dataLabel.setText(time);
+                    camLabel.setText("CAM-" + localization);
                 });
             }
         }).start();
@@ -70,7 +71,8 @@ public class CamerasController {
     }
 
     public void setOpacity(double value) {
-        this.viewer.setOpacity(value);
+        if (this.localization.compareTo("Main Deposit") != 0)
+            this.viewer.setOpacity(value);
     }
 
     public void zoomCam(ScrollEvent event) {

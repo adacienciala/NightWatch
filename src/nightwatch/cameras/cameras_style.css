@@ -4,7 +4,8 @@
 }
 
 .label {
-    -fx-font-weight: bold;
-    -fx-text-fill: limegreen;
-    -fx-font-size: 25;
+    -fx-font-family: "Seven Segment";
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-color: black;
 }
