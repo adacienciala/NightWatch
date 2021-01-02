@@ -10,27 +10,22 @@ public class LightsController {
   @FXML private Slider slider4;
   private NightwatchController parentController;
 
+  private void setValue(int room, double val) {
+    if (val < 10.0f) {
+      val = 10.0f;
+    }
+    parentController.setLightsValue(room, val);
+  }
+
   public void initialize() {
-    slider1.setValue(100.0);
-    slider2.setValue(100.0);
-    slider3.setValue(100.0);
-    slider4.setValue(100.0);
-    slider1.setOnMouseDragged(e -> {
-      System.out.println("value " + slider1.getValue());
-      parentController.setLightsValue(0, slider1.getValue());
-    });
-    slider2.setOnMouseDragged(e -> {
-      System.out.println("value " + slider2.getValue());
-      parentController.setLightsValue(1, slider2.getValue());
-    });
-    slider3.setOnMouseDragged(e -> {
-      System.out.println("value " + slider3.getValue());
-      parentController.setLightsValue(2, slider3.getValue());
-    });
-    slider4.setOnMouseDragged(e -> {
-      System.out.println("value " + slider4.getValue());
-      parentController.setLightsValue(3, slider4.getValue());
-    });
+    final Slider[] sliders = {slider1, slider2, slider3, slider4};
+    for (int i = 0; i < sliders.length; i++) {
+      sliders[i].setValue(100.0f);
+      final int idx = i;
+      sliders[i].setOnMouseDragged(e -> {
+        setValue(idx, sliders[idx].getValue());
+      });
+    }
     new Thread(() -> {
       NightwatchController.sleepFor(100);
       slider1.getScene().getWindow().setOnCloseRequest(e -> {

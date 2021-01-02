@@ -22,8 +22,8 @@ public class RadioController {
   private final int[] frequencies = {30, 60, 90, 120};
 
   private static final String soundFilename = "src/nightwatch/radio/resources/static.mp3";
-  private static final Media sound = new Media(Paths.get(soundFilename).toUri().toString());
-  private static final MediaPlayer staticMedia = new MediaPlayer(sound);
+  private final Media sound = new Media(Paths.get(soundFilename).toUri().toString());
+  private final MediaPlayer staticMedia = new MediaPlayer(sound);
 
   private void setVolumes() {
     double maxStatic = 0.5f;

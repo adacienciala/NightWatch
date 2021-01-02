@@ -34,11 +34,11 @@
 }
 
 .cameras-pane {
-    -fx-background-image: url('img/im4.png');
+    -fx-background-image: url('img/TVs3.png');
     -fx-background-size: stretch;
 }
 
 .cameras-pane-active {
-    -fx-background-image: url('img/im4_activated.png');
+    -fx-background-image: url('img/TVs3.png');
     -fx-background-size: stretch;
 }
