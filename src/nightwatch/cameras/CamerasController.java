@@ -2,6 +2,7 @@ package nightwatch.cameras;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -71,8 +72,11 @@ public class CamerasController {
     }
 
     public void setOpacity(double value) {
-        if (this.localization.compareTo("Main Deposit") != 0)
-            this.viewer.setOpacity(value);
+        if (this.localization.compareTo("Main Deposit") != 0) {
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setBrightness(-1*(1-value));
+            this.viewer.setEffect(colorAdjust);
+        }
     }
 
     public void zoomCam(ScrollEvent event) {
