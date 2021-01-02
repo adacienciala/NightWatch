@@ -1,44 +1,28 @@
 .grid {
-    -fx-background-image: url('img/cockpit.png');
+    -fx-background-image: url('img/background.png');
     -fx-background-size: stretch;
 }
 
 .lights-pane {
-    -fx-background-image: url('img/im1.png');
-    -fx-background-size: stretch;
-}
-
-.lights-pane-active {
-    -fx-background-image: url('img/im1_activated.png');
+    -fx-background-image: url('img/power.png');
     -fx-background-size: stretch;
 }
 
 .emergency-pane {
-    -fx-background-image: url('img/im2.png');
-    -fx-background-size: stretch;
-}
-
-.emergency-pane-active {
-    -fx-background-image: url('img/im2_activated.png');
+    -fx-background-image: url('img/button.png');
     -fx-background-size: stretch;
 }
 
 .audio-pane {
-    -fx-background-image: url('img/im3.png');
-    -fx-background-size: stretch;
-}
-
-.audio-pane-active {
-    -fx-background-image: url('img/im3_activated.png');
+    -fx-background-image: url('img/radio.png');
     -fx-background-size: stretch;
 }
 
 .cameras-pane {
-    -fx-background-image: url('img/TVs3.png');
+    -fx-background-image: url('img/cameras.png');
     -fx-background-size: stretch;
 }
-
-.cameras-pane-active {
-    -fx-background-image: url('img/TVs3.png');
+.chair-pane {
+    -fx-background-image: url('img/chair.png');
     -fx-background-size: stretch;
 }

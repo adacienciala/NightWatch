@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nightwatch.cameras.CamerasController;
@@ -28,8 +27,6 @@ public class NightwatchController {
     @FXML public Pane audioPane;
     @FXML public Pane emergencyPane;
     @FXML public Pane camerasPane;
-
-    private static boolean firstCameraOpened = false;
 
     CamerasController[] cameras = new CamerasController[4];
     String[] localizations = {"Entrance", "Lockers", "Main Deposit", "Halls"};
@@ -98,11 +95,6 @@ public class NightwatchController {
     @FXML
     public void openLightsWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening lights");
-        if (!lightsPane.getStyleClass().remove("lights-pane")) {
-            lightsPane.getStyleClass().remove("lights-pane-active");
-            lightsPane.getStyleClass().add("lights-pane");
-        }
-        else lightsPane.getStyleClass().add("lights-pane-active");
         playSound("lights open");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("lights.fxml"));
         Parent root = loader.load();
@@ -117,11 +109,6 @@ public class NightwatchController {
     @FXML
     public void openAudioWindow(MouseEvent mouseEvent) {
         System.out.println("Opening audio");
-        if (!audioPane.getStyleClass().remove("audio-pane")) {
-            audioPane.getStyleClass().remove("audio-pane-active");
-            audioPane.getStyleClass().add("audio-pane");
-        }
-        else audioPane.getStyleClass().add("audio-pane-active");
         playSound("radio open", 1.0f);
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("radio/radio.fxml"));
@@ -141,29 +128,16 @@ public class NightwatchController {
     @FXML
     public void openEmergencyWindow(MouseEvent mouseEvent) {
         System.out.println("Emergency button!");
-        if (!emergencyPane.getStyleClass().remove("emergency-pane")) {
-            emergencyPane.getStyleClass().remove("emergency-pane-active");
-            emergencyPane.getStyleClass().add("emergency-pane");
-        }
-        else emergencyPane.getStyleClass().add("emergency-pane-active");
     }
 
     @FXML
     public void openCamerasWindow(MouseEvent mouseEvent) throws IOException {
         System.out.println("Opening cameras");
-        if (!camerasPane.getStyleClass().remove("cameras-pane")) {
-            camerasPane.getStyleClass().remove("cameras-pane-active");
-            camerasPane.getStyleClass().add("cameras-pane");
-        }
-        else camerasPane.getStyleClass().add("cameras-pane-active");
 
         int sceneMinWidth = 660;
         int sceneMinHeight = 380;
-        if (firstCameraOpened) {
+        if (mouseEvent != null) {
             playSound("camera open");
-        }
-        if (!firstCameraOpened) {
-            firstCameraOpened = true;
         }
         for (int i = 0; i < 4; ++i) {
             if (cameras[i] == null) {

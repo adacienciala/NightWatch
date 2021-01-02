@@ -13,34 +13,45 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <children>
-      <Pane fx:id="lightsPane" onMouseClicked="#openLightsWindow" styleClass="lights-pane" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Pane fx:id="lightsPane" onMouseClicked="#openLightsWindow" styleClass="lights-pane" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Pane>
+      <Pane fx:id="audioPane" onMouseClicked="#openAudioWindow" rotate="13.0" styleClass="audio-pane" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Pane>
+      <Pane fx:id="camerasPane" onMouseClicked="#openCamerasWindow" styleClass="cameras-pane" GridPane.columnIndex="3" GridPane.columnSpan="6" GridPane.rowSpan="3">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Pane>
-      <Pane fx:id="audioPane" onMouseClicked="#openAudioWindow" styleClass="audio-pane" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      <Pane fx:id="emergencyPane" onMouseClicked="#openEmergencyWindow" styleClass="emergency-pane" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Pane>
-      <Pane fx:id="camerasPane" onMouseClicked="#openCamerasWindow" styleClass="cameras-pane" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="2">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </Pane>
-      <Pane fx:id="emergencyPane" onMouseClicked="#openEmergencyWindow" styleClass="emergency-pane" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
-         <GridPane.margin>
-            <Insets bottom="10.0" />
-         </GridPane.margin>
-      </Pane>
+      <Pane styleClass="chair-pane" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="4" />
    </children>
 </GridPane>
