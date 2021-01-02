@@ -10,6 +10,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.transform.Scale;
 import javafx.util.Duration;
+import nightwatch.NightwatchController;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -30,9 +31,7 @@ public class CamerasController {
         new Thread(() -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd EEE \nHH:mm:ss");
             while (true) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ignored) { }
+                NightwatchController.sleepFor(1000);
                 final String time = simpleDateFormat.format(new Date());
                 Platform.runLater(() -> {
                     dataLabel.setText(time);
