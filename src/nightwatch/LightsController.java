@@ -11,9 +11,6 @@ public class LightsController {
   private NightwatchController parentController;
 
   private void setValue(int room, double val) {
-    if (val < 10.0f) {
-      val = 10.0f;
-    }
     parentController.setLightsValue(room, val);
   }
 
