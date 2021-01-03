@@ -1,6 +1,7 @@
 package nightwatch;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -136,7 +138,7 @@ public class NightwatchController {
         rootPane.add(flashing, 0, 0, 13, 7);
         new Thread(() -> {
             int _state = 0;
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 final int state = _state;
                 new Thread(() -> {
                     if (state == 0) {
@@ -153,7 +155,29 @@ public class NightwatchController {
                 _state = _state == 0 ? 1 : 0;
                 sleepFor(1000);
             }
-//            rootPane.setOpacity(1.0f);
+            flashing.setStyle("-fx-background-color: black;");
+            flashing.getStyleClass().remove("alarm-on");
+            Platform.runLater(() -> {
+                File file = new File("src/nightwatch/img/finally_dead.mp4");
+                Media media = null;
+                try {
+                    media = new Media(file.toURI().toURL().toString());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    System.exit(1);
+                }
+                MediaPlayer player = new MediaPlayer(media);
+                MediaView viewer = new MediaView(player);
+                viewer.fitWidthProperty().bind(flashing.widthProperty());
+                viewer.fitHeightProperty().bind(flashing.heightProperty());
+                flashing.getChildren().add(viewer);
+                player.setOnEndOfMedia(() -> {
+                    player.dispose();
+                    System.exit(0);
+                });
+                player.play();
+                player.setVolume(0.8f);
+            });
         }).start();
     }
 
