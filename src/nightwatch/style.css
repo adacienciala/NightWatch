@@ -28,5 +28,6 @@
 }
 
 .alarm-on {
-    /*-fx-effect: innershadow(gaussian, rgba(255, 0, 0, 0.5), 10, 0, 5, 5);*/
+    -fx-background-image: url('img/alarm.png');
+    -fx-background-size: stretch;
 }

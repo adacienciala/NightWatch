@@ -54,13 +54,15 @@ public class NightwatchController {
             lut.put("flashlight notice", "src/nightwatch/sounds/flashlight.wav");
             lut.put("camera open", "src/nightwatch/sounds/camera1.wav");
             lut.put("camera close", "src/nightwatch/sounds/camera2.wav");
+            lut.put("alarm", "src/nightwatch/sounds/alarm_once.wav");
             MediaPlayer sound = new MediaPlayer(new Media(Paths.get(lut.get(name)).toUri().toString()));
             sound.setOnEndOfMedia(() -> {
+                System.out.println("Disposing");
                 sound.dispose();
             });
             sound.setVolume(vol);
             sound.play();
-            sleepFor(1000 + (long)sound.getTotalDuration().toSeconds());
+            sleepFor(1000);
             sleepFor((long)sound.getTotalDuration().toSeconds());
         }).start();
     }
@@ -131,8 +133,28 @@ public class NightwatchController {
         System.out.println("Emergency button!");
         Pane flashing = new Pane();
         flashing.getStyleClass().add("alarm-on");
-//        flashing.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.RED,2,0,0,0));
         rootPane.add(flashing, 0, 0, 13, 7);
+        new Thread(() -> {
+            int _state = 0;
+            for (int i = 0; i < 6; i++) {
+                final int state = _state;
+                new Thread(() -> {
+                    if (state == 0) {
+                        playSound("alarm");
+                    }
+                    System.out.println("From " + state + " to " + (state == 0 ? 1 : 0));
+                    FadeTransition transition = new FadeTransition();
+                    transition.setDuration(Duration.millis(900));
+                    transition.setNode(flashing);
+                    transition.setFromValue(state);
+                    transition.setToValue(state == 0 ? 1 : 0);
+                    transition.play();
+                }).start();
+                _state = _state == 0 ? 1 : 0;
+                sleepFor(1000);
+            }
+//            rootPane.setOpacity(1.0f);
+        }).start();
     }
 
     @FXML
