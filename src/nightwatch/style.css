@@ -26,3 +26,7 @@
     -fx-background-image: url('img/chair.png');
     -fx-background-size: stretch;
 }
+
+.alarm-on {
+    /*-fx-effect: innershadow(gaussian, rgba(255, 0, 0, 0.5), 10, 0, 5, 5);*/
+}

@@ -6,11 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nightwatch.cameras.CamerasController;
@@ -57,9 +60,7 @@ public class NightwatchController {
             });
             sound.setVolume(vol);
             sound.play();
-            System.out.println("Playing " + name);
             sleepFor(1000 + (long)sound.getTotalDuration().toSeconds());
-            System.out.println("Sleeping for " + sound.getTotalDuration().toSeconds());
             sleepFor((long)sound.getTotalDuration().toSeconds());
         }).start();
     }
@@ -129,7 +130,8 @@ public class NightwatchController {
     public void openEmergencyWindow(MouseEvent mouseEvent) {
         System.out.println("Emergency button!");
         Pane flashing = new Pane();
-        flashing.setStyle("-fx-background-color: red");
+        flashing.getStyleClass().add("alarm-on");
+//        flashing.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.RED,2,0,0,0));
         rootPane.add(flashing, 0, 0, 13, 7);
     }
 
