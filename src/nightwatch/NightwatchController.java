@@ -171,6 +171,7 @@ public class NightwatchController {
                 viewer.fitWidthProperty().bind(flashing.widthProperty());
                 viewer.fitHeightProperty().bind(flashing.heightProperty());
                 flashing.getChildren().add(viewer);
+                flashing.getScene().getWindow().setWidth(715.0f);
                 player.setOnEndOfMedia(() -> {
                     player.dispose();
                     System.exit(0);
