@@ -128,6 +128,9 @@ public class NightwatchController {
     @FXML
     public void openEmergencyWindow(MouseEvent mouseEvent) {
         System.out.println("Emergency button!");
+        Pane flashing = new Pane();
+        flashing.setStyle("-fx-background-color: red");
+        rootPane.add(flashing, 0, 0, 13, 7);
     }
 
     @FXML
