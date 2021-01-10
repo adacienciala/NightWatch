@@ -158,7 +158,7 @@ public class NightwatchController {
             flashing.setStyle("-fx-background-color: black;");
             flashing.getStyleClass().remove("alarm-on");
             Platform.runLater(() -> {
-                File file = new File("src/nightwatch/img/finally_dead.mp4");
+                File file = new File("src/nightwatch/img/dead_finally.mp4");
                 Media media = null;
                 try {
                     media = new Media(file.toURI().toURL().toString());
